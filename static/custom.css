@@ -1,0 +1,22 @@
+#navbar {
+        margin-bottom: 25px;
+     }
+
+#container {
+         margin: 10px;
+     }
+
+.container-fluid {
+    padding: 20px;
+    background-color: #32A9D1;
+}
+
+#logo {
+    border: grey solid 3px;
+    align-content: right;
+}
+
+#country-chart .x.axis text {
+    text-anchor: end !important;
+    transform: rotate(-45deg);
+}

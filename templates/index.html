@@ -3,29 +3,59 @@
 
 <head>
     <title>Shark Attacks</title>
-  <link rel="stylesheet" href="{{ url_for ('static',filename='lib/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{ url_for ('static',filename='lib/css/keen-dashboards.css')}}">
-  <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
-  <link rel="stylesheet" href="static/custom.css">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='lib/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static',filename='lib/css/keen-dashboards.css')}}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
+    <link rel="stylesheet" href="static/custom.css">
 </head>
-  <body>
-       <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="./">Global Shark Attacks</a>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="navbar" class="navbar navbar-inverse navbar" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="./"><h1>Global Shark Attacks</h1></a>
+                        <img id ="logo" src="static/dashLogo.jpg" width="650px" height="150px">
+                    </div>
+                </div>
             </div>
         </div>
+
+        <hr>
+
+
+        <div class="row">
+            <div id="container" class="col-sm-8">
+                <div class="chart-wrapper">
+                    <div class="chart-title">Attacks by Country</div>
+                    <div class="chart-stage">
+                        <div id="country-chart"></div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">Fatal</div>
+                        <div class="chart-stage">
+                            <div id="fatal-chart"></div>
+                        </div>
+                    </div>
+                </div>  
+        </div>
+
     </div>
-    <hr>
 
 
-  <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
-  <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
-  <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>    
-  </body>
+
+    <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+</body>
+
 </html>
