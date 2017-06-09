@@ -16,9 +16,13 @@
     align-content: right;
 }
 
-#country-chart .x.axis text {
+#species-chart .x.axis text {
     text-anchor: end !important;
     transform: rotate(-45deg);
+}
+
+.row{
+    padding-top: 10px;
 }
 
 /*.dc-legend {
