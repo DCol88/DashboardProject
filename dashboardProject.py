@@ -12,8 +12,8 @@ COLLECTION_NAME = 'attacksList'
 
 @app.route('/')
 def index():
-    return("Hello World")
-    
+    return render_template("index.html")
+
 @app.route("/GlobalSharkAttacks/attacksList")
 def donor_projects():
     FIELDS = {
