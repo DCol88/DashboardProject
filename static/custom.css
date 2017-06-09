@@ -20,3 +20,8 @@
     text-anchor: end !important;
     transform: rotate(-45deg);
 }
+
+/*.dc-legend {
+    position: absolute, right;
+    align-content: right;
+}*/

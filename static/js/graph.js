@@ -12,18 +12,18 @@ var countryDim = ndx.dimension(function (d) {
     return d["Country"];
 });
 
-var fatalDim = ndx.dimension(function (d) {
-    return d["Fatal (Y/N)"];
+var provokeDim = ndx.dimension(function (d) {
+    return d["Type"];
 });
 
 /*Y-AXIS*/
 
 var numAttacksByCountry = countryDim.group();
-var numAttacksByFatal = fatalDim.group();
+var numAttacksByProvocation = provokeDim.group();
 
 /*Link to HTML*/
 var countryChart = dc.barChart("#country-chart");
-var fatalChart = dc.pieChart("#fatal-chart");
+var provokeChart = dc.pieChart("#provoked-chart");
 
 /*Chart Attributes*/
 countryChart
@@ -40,13 +40,14 @@ countryChart
     .xAxisLabel("Country")
     .yAxis().ticks(20);
 
-fatalChart
+provokeChart
     .height(220)
     .radius(90)
     .innerRadius(40)
     .transitionDuration(1500)
-    .dimension(fatalDim)
-    .group(numAttacksByFatal);
+    .dimension(provokeDim)
+    .group(numAttacksByProvocation)
+    .legend(dc.legend().x(220).y(0).gap(5));
 
 
 dc.renderAll();
