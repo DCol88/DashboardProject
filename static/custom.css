@@ -3,7 +3,7 @@
      }
 
 #container {
-         margin: 10px;
+         margin: 0px;
      }
 
 .container-fluid {
@@ -21,11 +21,26 @@
     transform: rotate(-45deg);
 }
 
+#activity-chart .x.axis text {
+    text-anchor: end !important;
+    transform: rotate(-45deg);
+}
+
 .row{
     padding-top: 10px;
 }
 
-/*.dc-legend {
-    position: absolute, right;
-    align-content: right;
-}*/
+#totalAttacks {
+    background: #33CC99;
+    position: relative;
+    font-size: 29px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 0px;
+}
+
+.chart-wrapper {
+
+}
