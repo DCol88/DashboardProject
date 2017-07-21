@@ -11,8 +11,14 @@ app = Flask(__name__)
 # COLLECTION_NAME = 'attacksList'
 
 MONGODB_URI = os.environ.get('MONGODB_URI')
-DBS_NAME = os.environ.get('MONGO_DB_NAME','donorsUSA')
-COLLECTION_NAME = os.environ.get('MONGO_COLLECTION_NAME','projects')
+DBS_NAME = os.environ.get('MONGO_DB_NAME','GlobalSharkAttacks')
+COLLECTION_NAME = os.environ.get('MONGO_COLLECTION_NAME','attacksList')
+
+MONGODB_URI = ''os.environ.get('MONGODB_URI')''
+DBS_NAME = os.environ.get('MONGO_DB_NAME','GlobalSharkAttacks')
+COLLECTION_NAME = os.environ.get('MONGO_COLLECTION_NAME','attacksList')
+
+
 
 @app.route('/')
 def index():
