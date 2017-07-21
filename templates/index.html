@@ -9,21 +9,34 @@
     <link rel="stylesheet" href="static/custom.css">
 </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="navbar" class="navbar navbar-inverse navbar" role="navigation">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="./">
-                            <h1>Global Shark Attacks 2006 - 2016</h1>
-                        </a>
-                        <img id="logo" src="static/dashLogo.jpg" width="1050px" height="150px">
-                    </div>
-                </div>
-            </div>
-        </div>
 
+    <div class="loader"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    
+     <body class="application">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Shark Attacks</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left"> 
+          <li><a href="http://www.sharkattackfile.net/">Shark Attack File</a></li>
+          <li><a href="http://www.sharkattacknews.org/">Shark News</a></li>
+          <li><a href="http://www.imdb.com/list/ls002583733/">Most popular Shark Movies</a></li>
+          <li><a href="http://www.underwatertimes.com/sharks/sharks.php">Top News</a></li><li><a href="./">Reset All</a></li>
+        </ul>
+      </div>
+   </div>
+    <div class="container-fluid">
+        
+        <div class="chart-stage">
+            <div id="menu-select"></div>
+        </div>
         <hr>
 
 
@@ -38,9 +51,11 @@
                     </div>
                 </div>
             </div>
-            <div class = "col-sm-5">
+            <div class="col-sm-4">
                 <div class="chart-wrapper">
-                    <div class="chart-title"><h3>Total Attacks</h3></div>
+                    <div class="chart-title">
+                        <h3>Total Attacks</h3>
+                    </div>
                     <div id="totalAttacks" class="chart-stage">
                         <div id="number-attacks-nd"></div>
                     </div>
@@ -60,7 +75,7 @@
         <hr>
 
         <div class="row">
-            <div id="container" class="col-sm-12">
+            <div id="container" class="col-sm-8">
                 <div class="chart-wrapper">
                     <div class="chart-title">
                         <h3>Attacks by Country *TOP 5*</h3>
@@ -70,20 +85,46 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <hr>
-        <div class= "row">
-            <div id="container" class="col-sm-12">
+            <div id="container" class="col-sm-4">
                 <div class="chart-wrapper">
-                    <div class="chart-title"><h3>Attacks per Year</h3></div>
+                    <div class="chart-title">
+                        <h3>Gender of Victim</h3>
+                    </div>
                     <div class="chart-stage">
-                        <div id="attacks-per-year"></div>
+                        <div id="gender-chart"></div>
                     </div>
                 </div>
             </div>
         </div>
         <hr>
         <div class="row">
+            <div id="container" class="col-sm-6">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        <h3>Attacks per Year</h3>
+                    </div>
+                    <div class="chart-stage">
+                        <div id="attacks-per-year"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        <h3>Attacks by Activity</h3>
+                    </div>
+                    <div class="chart-stage">
+                        <div id="activity-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="world-map-widget"></div>
+        </div>
+
+        <!--<div class="row">
             <div class ="col-sm-12">
                 <div class="chart-wrapper">
                     <div class="chart-title"><h3>Attacks by Activity</h3></div>
@@ -91,9 +132,9 @@
                         <div id ="activity-chart"></div>
                     </div>
                 </div>
-            </div>
-            
-        </div>
+            </div>-->
+
+    </div>
 
 
     </div>
@@ -108,6 +149,13 @@
     <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
     <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $(".loader").fadeOut("30000");
+        })
+
+    </script>
 </body>
 
 </html>

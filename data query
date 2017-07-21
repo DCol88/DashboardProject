@@ -1,0 +1,6 @@
+db.getCollection('attacksList').update({Species: ''}, {$set: {Species: "Unknown"}}, {multi: true})
+for changing a value
+
+db.getCollection('attacksList').find({Species:/whitetip/})
+
+db.getCollection('attacksList').update({Species:/whitetip/}, {$set: {Species: "Whitetip"}}, {multi: true})

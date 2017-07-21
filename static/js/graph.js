@@ -5,7 +5,7 @@ queue()
 function makeGraphs(error, projectsJson) {
 
 
-var ndx = crossfilter(projectsJson);
+var ndx = crossfilter(projectsJson)
 
 /*X-AXIS*/
 var countryDim = ndx.dimension(function (d) {
@@ -28,6 +28,14 @@ var activityDim = ndx.dimension(function (d) {
     return d["Activity"];
 });
 
+var selectDim = ndx.dimension(function (d) {
+    return d["Country"];
+});
+
+var genderDim = ndx.dimension(function (d){
+    return d["Sex"];
+})
+
 var all = ndx.groupAll();
 
 /*Y-AXIS*/
@@ -37,6 +45,10 @@ var numAttacksByProvocation = provokeDim.group();
 var numAttacksBySpecies = speciesDim.group();
 var numAttacksByYear = yearDim.group();
 var numAttacksByActivity = activityDim.group();
+var numAttacksByGender = genderDim.group();
+
+var allDate = ("2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016")
+
 
 /*IF Statements*/
 
@@ -75,7 +87,7 @@ var otherAttacksPerYear = yearDim.group().reduceSum(function (d){
 /*STACKED BARCHART*/
 
 var surfAttacksByCountry = countryDim.group().reduceSum(function (d) {
-    if (d.Activity === 'Surfing') {
+    if (d.Activity === 'Surfing' && d.Country === "USA", "AUSTRALIA", "SOUTH AFRICA") {
         return  1;
     } else {
         return 0
@@ -83,7 +95,7 @@ var surfAttacksByCountry = countryDim.group().reduceSum(function (d) {
 });
 
 var swimAttacksByCountry = countryDim.group().reduceSum(function (d) {
-    if (d.Activity === 'Swimming') {
+    if (d.Activity === 'Swimming' && d.Country === "USA", "AUSTRALIA", "SOUTH AFRICA") {
         return  1;
     } else {
         return 0
@@ -91,7 +103,7 @@ var swimAttacksByCountry = countryDim.group().reduceSum(function (d) {
 });
 
 var fishAttacksByCountry = countryDim.group().reduceSum(function (d) {
-    if (d.Activity === 'Fishing') {
+    if (d.Activity === 'Fishing' && d.Country === "USA", "AUSTRALIA", "SOUTH AFRICA") {
         return  1;
     } else {
         return 0
@@ -113,6 +125,7 @@ var rowChart = dc.rowChart("#row-chart");
 var attacksPerYearByCountryChart = dc.compositeChart("#attacks-per-year");
 var numberAttacksND = dc.numberDisplay("#number-attacks-nd");
 var activityChart = dc.barChart("#activity-chart");
+var genderChart = dc.pieChart("#gender-chart");
 
  
 
@@ -120,6 +133,10 @@ var activityChart = dc.barChart("#activity-chart");
 
 
 /*Chart Attributes*/
+selectField = dc.selectMenu('#menu-select')
+       .dimension(selectDim)
+       .group(numAttacksByCountry);
+
 speciesChart
     .width(1000)
     .height(400)
@@ -128,7 +145,7 @@ speciesChart
     .group(numAttacksBySpecies)
     .transitionDuration(500)
     .x(d3.scale.ordinal())
-    .y(d3.scale.log().clamp(false).domain([0,50]))
+    .y(d3.scale.log().clamp(false).domain([0,25]))
     .xUnits(dc.units.ordinal)
     .elasticY(true)
     .elasticX(true)
@@ -167,8 +184,8 @@ attacksPerYearByCountryChart
     .width(990)
     .height(200)
     .margins({top:10, right: 50, bottom:80, left: 50})
-    .x(d3.time.scale().domain([2005,2016]))
-    /*.xUnits(dc.units.ordinal)*/
+    .x(d3.scale.ordinal().domain([allDate]))
+    .xUnits(dc.units.ordinal)
     .elasticY(true)
     .yAxisLabel("Num of Attacks")
     .xAxisLabel("Year")
@@ -205,6 +222,19 @@ activityChart
     .x(d3.scale.ordinal())
     .xUnits(dc.units.ordinal)
     .legend(dc.legend().x(580).y(80).itemHeight(13).gap(5));
+
+
+genderChart
+    .height(220)
+    .width(400)
+    .radius(90)
+    .innerRadius(40)
+    .transitionDuration(1500)
+    .dimension(genderDim)
+    .group(numAttacksByGender)
+    .cap(2)
+    .ordering( function(d) { return -1.0 * +d.value; })
+    .legend(dc.legend().x(300).y(0).gap(5));
 
 
 numberAttacksND
