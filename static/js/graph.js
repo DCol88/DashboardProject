@@ -129,8 +129,37 @@ var genderChart = dc.pieChart("#gender-chart");
 
  
 
-/*Color Scales*/
+/*Chart Scales*/
+// First we get the width of the ID element from the DOM.
+	// This is done below using the ID your biggest chart, which
+	// in this case spans the entire width of the website.
+	// In this case the name of the ID is time-chart, use the ID
+	// name of one of your charts.
+	// That number gets store in chart_height_element.
+	// Then we get the property info of that element with
+	// getBoundingClientRect() (get the rectangle properties basically)
+	// After that getting the width and the height is easy, and
+	// we store those values on chart_height and chart_width respectively.
 
+	chart_height_element = document.getElementById('species-chart');
+    positionInfo = chart_height_element.getBoundingClientRect();
+    chart_height = positionInfo.height;
+    chart_width = positionInfo.width;
+
+	// We do the same for pie charts, as they are different in size.
+
+    pie_height_element = document.getElementById('provoked-chart');
+    pie_position_info = pie_height_element.getBoundingClientRect();
+    pie_height = pie_position_info.height;
+    pie_width = pie_position_info.width;
+
+    // Define chart properties, using chart_width and chart_height.
+	// Those basicallya account to numbers (you can console_log them
+	// to check the value returned, in pixels.
+
+    timeChart
+        .width(chart_width)
+        .height(chart_height)
 
 /*Chart Attributes*/
 selectField = dc.selectMenu('#menu-select')
@@ -247,4 +276,27 @@ numberAttacksND
 
 dc.renderAll();
 
+
+var resizeTimer;
+
+    $(window).on('resize', function(e) {
+
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+
+        timeChart
+            .width(chart_width)
+            .height(chart_height);
+        scatterTweets
+            .width(chart_width)
+            .height(chart_height);
+        uniqueTweetsChart
+            .width(chart_width)
+            .height(chart_height);
+
+        window.location.reload();
+                
+    }, 250);
+
+    });
 }
